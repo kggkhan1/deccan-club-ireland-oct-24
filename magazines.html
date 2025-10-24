@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magazine Display</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: #f8f9fa;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        /* Header Styles */
+        header {
+            background: #2A5885;
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-btn {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .magazine-container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+            flex: 1;
+            padding: 1rem;
+        }
+        
+        .magazine-line {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1rem 0;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background: #2A5885;
+            color: white;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Magazine Item Styles */
+        .magazine-item {
+            flex: 0 0 auto;
+            width: 280px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+        
+        .magazine-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.75rem 1.5rem rgba(0,0,0,0.15);
+        }
+        
+        .magazine-cover {
+            width: 220px;
+            height: 310px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            margin-bottom: 1.25rem;
+            border: 1px solid rgba(0,0,0,0.1);
+            box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+        
+        .magazine-title {
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+            color: #2A5885;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+        }
+        
+        .magazine-date {
+            font-size: 1rem;
+            color: #6C757D;
+            margin-bottom: 1.25rem;
+            font-weight: 500;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 0.75rem;
+            width: 100%;
+        }
+        
+        .preview-btn, .pdf-btn, .rules-btn {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s ease;
+            box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        
+        .preview-btn {
+            background: #2A5885;
+            color: white;
+        }
+        
+        .pdf-btn {
+            background: #D4AF37;
+            color: #212529;
+        }
+        
+        .rules-btn {
+            background: #28a745;
+            color: white;
+        }
+        
+        .preview-btn:hover {
+            background: #1A3A6A;
+            transform: translateY(-2px);
+            box-shadow: 0 0.5rem 0.75rem rgba(0,0,0,0.15);
+        }
+        
+        .pdf-btn:hover {
+            background: #B38F2A;
+            transform: translateY(-2px);
+            box-shadow: 0 0.5rem 0.75rem rgba(0,0,0,0.15);
+        }
+        
+        .rules-btn:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 0.5rem 0.75rem rgba(0,0,0,0.15);
+        }
+        
+        /* Full-page Preview Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-container {
+            background: white;
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+            overflow: hidden;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .modal-overlay.active .modal-container {
+            transform: translateY(0);
+        }
+        
+        .modal-header {
+            padding: 1rem;
+            background: #2A5885;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+        }
+        
+        .modal-title {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.75rem;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0.5rem;
+        }
+        
+        .modal-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            margin-top: 3.5rem;
+            height: calc(100% - 3.5rem - 3.5rem);
+        }
+        
+        .pdf-viewer-container {
+            flex: 1;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .pdf-viewer {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .pdf-alternative {
+            display: none;
+            padding: 2rem;
+            text-align: center;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            height: 100%;
+        }
+        
+        .modal-footer {
+            padding: 1rem;
+            display: flex;
+            justify-content: flex-end;
+            border-top: 1px solid #eee;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: white;
+            z-index: 10;
+        }
+        
+        @media (max-width: 768px) {
+            .header-container, .footer-content {
+                padding: 0 1rem;
+            }
+            
+            .magazine-line {
+                padding: 1rem 0;
+                gap: 1.5rem;
+            }
+            
+            .magazine-item {
+                width: 240px;
+                padding: 1.25rem;
+            }
+            
+            .magazine-cover {
+                width: 180px;
+                height: 255px;
+            }
+            
+            .magazine-title {
+                font-size: 1.1rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            header {
+                padding: 0.75rem;
+            }
+            
+            .logo {
+                font-size: 1.2rem;
+            }
+            
+            .back-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+            }
+            
+            .magazine-line {
+                padding: 1rem 0;
+                gap: 1rem;
+            }
+            
+            .magazine-item {
+                width: 200px;
+                padding: 1rem;
+            }
+            
+            .magazine-cover {
+                width: 160px;
+                height: 225px;
+            }
+            
+            .preview-btn, .pdf-btn, .rules-btn {
+                padding: 0.6rem;
+                font-size: 0.9rem;
+            }
+            
+            .pdf-viewer {
+                display: none;
+            }
+            
+            .pdf-alternative {
+                display: flex;
+            }
+            
+            .modal-content {
+                margin-top: 3rem;
+                height: calc(100% - 3rem - 3rem);
+            }
+            
+            footer {
+                padding: 1rem;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .copyright {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-book-open"></i> DCI Magazines
+            </a>
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="magazine-container">
+        <div class="magazine-line">
+            <!-- Magazine 1 -->
+            <div class="magazine-item">
+                <img src="DCI 2 cover.png" class="magazine-cover" alt="DCI Youth Magazine - 2nd Edition 2024" data-pdf="DCI 2nd edition.pdf" data-title="DCI Youth Magazine - 2nd Edition 2024">
+                <div class="magazine-title">DCI Youth Magazine</div>
+                <div class="magazine-date">2nd Edition 2024</div>
+                <div class="action-buttons">
+                    <button class="preview-btn" data-pdf="DCI 2nd edition.pdf" data-title="DCI Youth Magazine - 2nd Edition 2024">
+                        <i class="fas fa-eye"></i> Preview
+                    </button>
+                    <a href="DCI 2nd edition.pdf" class="pdf-btn" download>
+                        <i class="fas fa-download"></i> Download
+                    </a>
+                </div>
+            </div>
+
+
+            <!-- Magazine 3 -->
+            <div class="magazine-item">
+                <img src="DCI 1 cover.png" class="magazine-cover" alt="DCI Youth Magazine - 1st Edition 2024" data-pdf="DCIYouthMagazineJan2024Final.pdf" data-title="DCI Youth Magazine - 1st Edition 2024">
+                <div class="magazine-title">DCI Youth Magazine</div>
+                <div class="magazine-date">1st Edition 2024</div>
+                <div class="action-buttons">
+                    <button class="preview-btn" data-pdf="DCIYouthMagazineJan2024Final.pdf" data-title="DCI Youth Magazine - 1st Edition 2024">
+                        <i class="fas fa-eye"></i> Preview
+                    </button>
+                    <a href="DCIYouthMagazineJan2024Final.pdf" class="pdf-btn" download>
+                        <i class="fas fa-download"></i> Download
+                    </a>
+                </div>
+            </div>
+
+             <div class="magazine-item">
+                <img src="dci youth 3.jpg" class="magazine-cover" alt="DCI Youth Magazine - 3rd Edition 2025" data-pdf="dci youth 3.jpg" data-title="DCI Youth Magazine - 3rd Edition 2025">
+                <div class="magazine-title">DCI Youth Magazine</div>
+                <div class="magazine-date">3rd Edition 2025</div>
+                <div class="action-buttons">
+                    <button class="preview-btn" data-pdf="dci youth 3.jpg" data-title="DCI Youth Magazine - 3rd Edition 2025">
+                        <i class="fas fa-eye"></i> Preview
+                    </button>
+                    <a href="DCI Youth Magazine - InformationPDF.pdf" class="rules-btn">
+                        <i class="fas fa-book"></i> Rules
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+            <div class="copyright">
+                &copy; 2024 DCI Youth Magazines. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Full-page Preview Modal -->
+    <div class="modal-overlay" id="previewModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Magazine Preview</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-content">
+                <div class="pdf-viewer-container">
+                    <iframe id="pdfViewer" class="pdf-viewer" frameborder="0"></iframe>
+                    <div class="pdf-alternative" id="pdfAlternative">
+                        <i class="fas fa-file-pdf fa-4x" style="color: #D4AF37;"></i>
+                        <h3>PDF Preview Not Available</h3>
+                        <p>Please download the magazine to view it on your device.</p>
+                        <a href="#" class="pdf-btn" id="altDownloadBtn">
+                            <i class="fas fa-download"></i> Download
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="pdf-btn" id="modalDownloadBtn">
+                    <i class="fas fa-download"></i> Download
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Modal elements
+            const modal = document.getElementById('previewModal');
+            const closeBtn = document.querySelector('.close-modal');
+            const pdfViewer = document.getElementById('pdfViewer');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDownloadBtn = document.getElementById('modalDownloadBtn');
+            const altDownloadBtn = document.getElementById('altDownloadBtn');
+            
+            // Preview buttons
+            const previewBtns = document.querySelectorAll('.preview-btn');
+            const coverImages = document.querySelectorAll('.magazine-cover');
+            
+            // Check if mobile device
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            // Open modal function
+            function openModal(pdfFile, title) {
+                modalTitle.textContent = title;
+                modalDownloadBtn.href = pdfFile;
+                altDownloadBtn.href = pdfFile;
+                
+                if (isMobile) {
+                    // On mobile, show alternative options
+                    pdfViewer.style.display = 'none';
+                    document.getElementById('pdfAlternative').style.display = 'flex';
+                } else {
+                    // On desktop, try to embed PDF
+                    pdfViewer.style.display = 'block';
+                    document.getElementById('pdfAlternative').style.display = 'none';
+                    pdfViewer.src = pdfFile + '#view=FitH';
+                }
+                
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            // Close modal function
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                pdfViewer.src = '';
+            }
+            
+            // Add click events to preview buttons
+            previewBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const pdfFile = this.getAttribute('data-pdf');
+                    const title = this.getAttribute('data-title');
+                    openModal(pdfFile, title);
+                });
+            });
+            
+            // Add click events to cover images
+            coverImages.forEach(img => {
+                img.addEventListener('click', function() {
+                    const pdfFile = this.getAttribute('data-pdf');
+                    const title = this.getAttribute('data-title');
+                    openModal(pdfFile, title);
+                });
+            });
+            
+            // Close modal events
+            closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            // Close with ESC key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+            
+            // Initialize mobile view if needed
+            if (isMobile) {
+                pdfViewer.style.display = 'none';
+                document.getElementById('pdfAlternative').style.display = 'flex';
+            }
+        });
+    </script>
+</body>
+</html>
