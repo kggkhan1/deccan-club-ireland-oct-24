@@ -3,484 +3,2291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Gallery</title>
+    <title>Deccan Club of Ireland | Bridging Cultures, Building Futures</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-    /* Primary Colors */
-    --primary-color: #2A5885;       /* Deep Navy Blue */
-    --primary-light: #547AA5;       /* Lighter Blue */
-    --primary-dark: #1A3A6A;        /* Darker Blue */
-    
-    /* Accent Colors */
-    --accent-color: #D4AF37;        /* Metallic Gold */
-    --accent-dark: #B38F2A;         /* Darker Gold */
-    --accent-light: #FFD95E;        /* Lighter Gold */
-    
-    /* Neutrals */
-    --light-color: #F8F9FA;         /* Light background */
-    --dark-color: #212529;          /* Dark text */
-    --gray-mid: #6C757D;
-    
-    /* Functional Colors */
-    --immigration-color: #3498db;   /* Blue for immigration section */
-    --success-color: #388E3C;       /* Green */
-    --error-color: #D32F2F;         /* Red */
-    --warning-color: #FFA000;       /* Amber */
-    
-    /* Overlays */
-    --overlay-color: rgba(42, 88, 133, 0.85);
-}
+            /* Primary Colors */
+            --primary-color: #2A5885;
+            --primary-light: #547AA5;
+            --primary-dark: #1A3A6A;
+            
+            /* Accent Colors */
+            --accent-color: #D4AF37;
+            --accent-dark: #B38F2A;
+            --accent-light: #FFD95E;
+            
+            /* Neutrals */
+            --light-color: #F8F9FA;
+            --dark-color: #212529;
+            --gray-mid: #6C757D;
+        }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-        
-        body {
-            background-color: #f5f5f5;
-        }
-        
-        header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--success-color) 100%);
-            color: white;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 1.5rem;
-        }
-        
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: color 0.3s;
-        }
-        
-        nav ul li a:hover {
-            color: #3498db;
-        }
-        
-        .gallery-hero {
-            text-align: center;
-            padding: 3rem 2rem;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
-            color: white;
-        }
-        
-        .gallery-hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .event-gallery {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-        }
-        
-        .event-section {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 3rem;
-            overflow: hidden;
-        }
-        
-        .event-header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 1.5rem;
-        }
-        
-        .event-header h2 {
-            font-size: 1.8rem;
-        }
-        
-        .event-date {
-            font-size: 1rem;
-            opacity: 0.9;
-            margin-top: 0.5rem;
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1rem;
-            padding: 1.5rem;
-        }
-        
-        .gallery-item {
-            overflow: hidden;
-            border-radius: 6px;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            aspect-ratio: 1/1;
-            cursor: pointer;
-        }
-        
-        .gallery-item:hover {
-            transform: scale(1.03);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        
-        .back-btn {
-            display: inline-block;
-            margin: 1.5rem;
-            color: white;
-            text-decoration: none;
-            font-size: 1.1rem;
-        }
-        
-        .back-btn:hover {
-            text-decoration: underline;
-        }
-        
-        footer {
-            background-color:  #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 1.5rem;
-            margin-top: 2rem;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* Lightbox Styles */
-        .lightbox {
-            display: none;
+        body {
+            background-color: #fffee3;
+            color: var(--dark-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ==================== NAVIGATION ==================== */
+        .navbar {
             position: fixed;
-            z-index: 1000;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            justify-content: center;
+            background: linear-gradient(135deg, #2A5885, #1A3A6A);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            padding: 0 20px;
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 80px;
+        }
+
+        .navbar-logo-text {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .navbar-logo-text span {
+            color: #D4AF37;
+        }
+
+        .navbar-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-item {
+            position: relative;
+        }
+
+        .navbar-link {
+            color: white;
+            text-decoration: none;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            margin: 0 2px;
+            white-space: nowrap;
+        }
+
+        .navbar-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #D4AF37;
+        }
+
+        .navbar-link i {
+            margin-right: 6px;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            width: 220px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            list-style: none;
+            padding: 10px 0;
+            z-index: 1000;
+        }
+
+        .dropdown-item {
+            padding: 0;
+        }
+
+        .dropdown-link {
+            color: #333;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .dropdown-link:hover {
+            background-color: #f5f5f5;
+            color: #2A5885;
+            padding-left: 25px;
+        }
+
+        .dropdown-link i {
+            margin-right: 10px;
+            color: #2A5885;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .navbar-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+        }
+
+        .navbar-toggle span {
+            height: 3px;
+            width: 100%;
+            background-color: white;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-close {
+            display: none;
+        }
+
+        /* ==================== HEADER & HERO ==================== */
+
+.page-wrapper {
+    margin-top: 80px;
+}
+
+.logo-header {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+}
+
+.logo-header img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+
+.hero {
+    padding: 4rem 0;
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    color: white;
+    margin: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-bottom: 2rem; 
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem; 
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 3rem; 
+    line-height: 1.4;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem; 
+}
+
+/* ==================== IMAGE SLIDER ==================== */
+.hero-slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: var(--primary-dark, #1A3A6A);
+    margin-top: 0.8rem; 
+}
+
+        /* ==================== BUTTONS ==================== */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* ==================== SECTIONS ==================== */
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        /* ==================== ABOUT CARDS ==================== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .about-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-top-color: var(--accent-color);
+        }
+
+        .about-card-icon {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .read-more-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
             align-items: center;
         }
 
-        .lightbox.active {
+        .read-more-btn:hover {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            transform: translateY(-2px);
+        }
+
+        .additional-content {
+            padding-top: 1rem;
+            border-top: 1px solid rgba(42, 88, 133, 0.1);
+            margin-top: 1rem;
+            display: none;
+        }
+
+        /* ==================== QUICK LINKS ==================== */
+        .sections {
             display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
         }
 
-        .lightbox-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
+        .quick-links-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border-top: 4px solid var(--primary-color);
+            flex: 1;
+            min-width: 250px;
         }
 
-        .lightbox-img {
-            max-width: 100%;
-            max-height: 80vh;
-            display: block;
+        .quick-links-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .quick-links-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .quick-links-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .quick-links-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .quick-links-section ul li a {
+            color: var(--dark-color);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
             border-radius: 4px;
         }
 
-        .lightbox-caption {
-            color: white;
+        .quick-links-section ul li a:hover {
+            color: var(--accent-color);
+            background-color: rgba(42, 88, 133, 0.1);
+            transform: translateX(5px);
+        }
+
+        .quick-links-section ul li a i {
+            margin-right: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        /* ==================== PRAYER TIMETABLE ==================== */
+        .prayer-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
             text-align: center;
-            margin-top: 15px;
+        }
+        
+        .location {
             font-size: 1.2rem;
+            color: #2c5e8c;
+            margin-bottom: 10px;
+            font-weight: 600;
         }
-
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 40px;
+        
+        .date {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        
+        .hijri-date {
+            font-size: 1.2rem;
             font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
+            margin-bottom: 20px;
+            color: #2c5e8c;
+            text-align: center;
         }
-
-        .close-btn:hover {
-            color:  #40C575;
+        
+        .prayer-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
-
-      .back-btn {
-    display: inline-block;
-    margin: 1.5rem;
-    color: var(--primary-color); /* Navy blue text */
-    text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: bold;
-    background-color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    border: 2px solid var(--primary-color);
-}
-
-.back-btn:hover {
-    background-color: var(--primary-color);
-    color: white;
-}
-
-        @media (max-width: 768px) {
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        
+        .prayer-table th {
+            background-color: #2c5e8c;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        
+        .prayer-table td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .prayer-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .prayer-table tr:hover {
+            background-color: #f0f7ff;
+        }
+        
+        .next-prayer {
+            font-size: 1.2rem;
+            color: #2c5e8c;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f0f7ff;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 600px) {
+            .prayer-container {
+                padding: 20px;
             }
             
-            .lightbox-img {
-                max-height: 60vh;
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .prayer-table th, .prayer-table td {
+                padding: 10px;
             }
         }
-    </style>
-<body>
-    <header>
-        <div class="logo">Event Gallery</div>
-        <nav>
-            <ul>
-               <a href="index.html" class="back-btn">← Back to Home</a>
-            </ul>
-        </nav>
-    </header>
-    
-    <main class="event-gallery">
-      
-        <section id="wedding" class="event-section">
-            <div class="event-header">
-                <h2>Org First President Farooq Hussain Addressing DCI members meet at Old Belvedere Cricket Club Dublin7</h2>
-                <p class="event-date"> August 2006</p>
-            </div>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="DCI 1.jpg" alt="Org First President Farooq Hussain addressing members" data-caption="Org First President Farooq Hussain addressing members">
-                </div>
-                <div class="gallery-item">
-                    <img src="DCI 2.jpg" alt="DCI members gathering" data-caption="DCI members gathering at Old Belvedere Cricket Club">
-                </div>
-            </div>
-        </section>
-        
-        <!-- Corporate Event -->
-        <section id="corporate" class="event-section">
-            <div class="event-header">
-                <h2>Phoenix Park Get together</h2>
-                <p class="event-date">September 2009</p>
-            </div>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="DCI 4.jpg" alt="Phoenix Park gathering" data-caption="DCI members at Phoenix Park">
-                </div>
-                <div class="gallery-item">
-                    <img src="DCI 5.jpg" alt="Group activity" data-caption="Group activity at Phoenix Park">
-                </div>
-                <div class="gallery-item">
-                    <img src="dci 6.jpg" alt="Members socializing" data-caption="Members socializing at the event">
-                </div>
-                <div class="gallery-item">
-                    <img src="DCI 8.jpg" alt="Group photo" data-caption="Group photo at Phoenix Park">
-                </div>
-            </div>
-        </section>
-        
-        <section id="DCI" class="event-section">
-            <div class="event-header">
-                <h2>Galway</h2>
-                <p class="event-date">June 2010</p>
-            </div>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="DCI 10.jpg" alt="Galway event" data-caption="DCI members in Galway">
-                </div>
-           
-                </div>
-            </div>
-        </section>
-       
-        <section id="DCI" class="event-section">
-            <div class="event-header">
-                <h2>Euro Asia Family gathering
-                <p class="event-date"> Nov 2014
-            </div>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="DCI 11.jpg" alt="Euro Asia Family gathering Nov 2014">
-                </div>
-           
-                </div>
-            </div>
-        </section>
-        
-        </section>
-           
-        <section id="DCI" class="event-section">
-            <div class="event-header">
-                <h2>DCI Eid ul Adha get together
-                <p class="event-date">July 2023
-            </div>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                             <img src="DCI 13.jpg"=alt"Phoenix Park gathering" data-caption="">
-                             
-                </div>
-                <div class="gallery-item">
-                    <img src="DCI 17.jpg"Group activity" data-caption="">
-                </div>
-                <div class="gallery-item">
-                    <img src="DCI 18.jpg" alt="" data-caption="">
-                </div>
-                <div class="gallery-item">
-                    <img src="DCI 19.jpg" alt="Group photo" data-caption="">
-                </div>
-           
-                </div>
-            </div>
-        </section>
-            <section id="DCI" class="event-section">
-            <div class="event-header">
-                <h2>DCI Winter
-                <p class="event-date">Feb 2024
-            </div>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                             <img src="DCI 20.jpg"=alt"Phoenix Park gathering" data-caption="">
-                             
-                </div>
-                <div class="gallery-item">
-                    <img src="DCI 21.jpg"Group activity" data-caption="">
-          
 
-           
-                </div>
-            </div>
-        </section>
-            <section id="DCI" class="event-section">
-            <div class="event-header">
-                <h2>DCI Winter Gathering
-                <p class="event-date">Jan 2025
-            </div>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                             <img src="dci 23.jpg"=alt"Phoenix Park gathering" data-caption="">
-                             
-                </div>
-                <div class="gallery-item">
-                    <img src="DCI 25.jpg"Group activity" data-caption="">
-                </div>
-                <div class="gallery-item">
-                    <img src= "DCI 26.jpg" alt="" data-caption="">
-                </div>
-                <div class="gallery-item">
-                    <img src="DCI 29.jpg" alt="Group photo" data-caption="">
-                </div>
-              
-    </main>
+        /* ==================== AYAH SECTION ==================== */
+        .ayah-section {
+            padding: 2rem 0;
+            background-color: #f8f5f0;
+        }
+
+        .ayah-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .arabic-text {
+            font-size: 2rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            direction: rtl;
+            font-family: 'Amiri Quran', 'Traditional Arabic', serif;
+        }
+
+        .translation {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .reference {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ==================== TABBED INTERFACE ==================== */
+        .tabbed-interface {
+            background: white;
+            border-radius: 8px 8px 0 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            margin-top: 50px;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .tab-buttons {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #777;
+            position: relative;
+            transition: all 0.3s;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .tab-btn.active {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        .tab-content {
+            padding: 30px;
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+
+        .footer-contact-item {
+            display: flex;
+            margin-bottom: 1rem;
+            align-items: flex-start;
+        }
+
+        .footer-contact-icon {
+            color: var(--accent-color);
+            margin-right: 1rem;
+            margin-top: 0.2rem;
+        }
+
+        .footer-social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .footer-social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .footer-social-links a:hover {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* ==================== MOBILE STYLES ==================== */
+        @media (max-width: 968px) {
+            .navbar-toggle {
+                display: flex;
+            }
+            
+            .navbar-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: linear-gradient(135deg, #2A5885, #1A3A6A);
+                flex-direction: column;
+                padding: 40px 20px;
+                transition: all 0.5s ease;
+                overflow-y: auto;
+            }
+            
+            .navbar-menu.active {
+                left: 0;
+            }
+            
+            .navbar-item {
+                width: 100%;
+                margin: 10px 0;
+            }
+            
+            .navbar-link {
+                padding: 15px;
+                margin: 5px 0;
+                justify-content: space-between;
+                border-radius: 5px;
+                background-color: rgba(255, 255, 255, 0.05);
+            }
+            
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                width: 100%;
+                box-shadow: none;
+                background-color: rgba(0, 0, 0, 0.1);
+                margin: 10px 0;
+                display: none;
+            }
+            
+            .dropdown.active .dropdown-menu {
+                display: block;
+            }
+            
+            .dropdown-link {
+                color: rgba(255, 255, 255, 0.9);
+                padding: 12px 20px 12px 40px;
+            }
+            
+            .navbar-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .navbar-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .navbar-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+
+            .navbar-close {
+                display: block;
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            .hero {
+                padding: 2rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .sections {
+                flex-direction: column;
+            }
+            
+            .quick-links-section {
+                min-width: 100%;
+            }
+            
+            .tab-buttons {
+                flex-direction: column;
+            }
+            
+            .tab-btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .navbar-logo-text {
+                font-size: 1.2rem;
+            }
+        }
+        /* ==================== EVENTS SECTION STYLES ==================== */
+.events-container {
+    display: flex;
+    justify-content: center;
+}
+
+.event-card {
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+}
+
+.event-image {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 10px;
+    margin: 0 auto 1.5rem auto;
+    display: block;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border: 3px solid var(--accent-color);
+}
+
+.event-date {
+    font-size: 1.1rem;
+    color: var(--primary-dark);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.event-content {
+    text-align: center;
+}
+
+.event-content h3 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.event-content p {
+    font-size: 1.1rem;
+    color: var(--dark-color);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.event-content .btn {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+/* Responsive styles for events section */
+@media (min-width: 768px) {
+    .event-image {
+        max-width: 450px;
+        margin-bottom: 2rem;
+    }
     
-    <!-- Lightbox HTML -->
-    <div id="lightbox" class="lightbox">
-        <span class="close-btn">&times;</span>
-        <button class="prev-btn">&#10094;</button>
-        <div class="lightbox-content">
-            <img class="lightbox-img" src="" alt="">
-            <div class="lightbox-caption"></div>
+    .event-date {
+        font-size: 1.2rem;
+    }
+    
+    .event-content h3 {
+        font-size: 1.8rem;
+    }
+    
+    .event-content p {
+        font-size: 1.2rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .event-image {
+        max-width: 500px;
+    }
+    
+    .event-date {
+        font-size: 1.3rem;
+    }
+    
+    .event-content h3 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .event-image {
+        max-width: 300px;
+        margin-bottom: 1rem;
+    }
+    
+    .event-date {
+        font-size: 1rem;
+    }
+    
+    .event-content h3 {
+        font-size: 1.3rem;
+    }
+    
+    .event-content p {
+        font-size: 1rem;
+    }
+}
+  /* Lightbox Styles for Event */
+  #lightbox-overlay {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    cursor: zoom-out;
+  }
+
+  #lightbox-overlay.active {
+    display: flex;
+  }
+
+  #lightbox-image {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  }
+
+  /* Event Layout */
+  .three-column-layout {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .event-card {
+    flex: 1 1 30%;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .event-image {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    cursor: zoom-in;
+    transition: transform 0.3s ease;
+  }
+
+  .event-image:hover {
+    transform: scale(1.03);
+  }
+
+  .event-content h3 {
+    color: #1b4965;
+    margin-bottom: 0.5rem;
+  }
+
+  .event-content p {
+    color: #555;
+    line-height: 1.6;
+  }
+
+
+  /* Mobile Responsive */
+  @media (max-width: 900px) {
+    .three-column-layout {
+      flex-direction: column;
+      align-items: center;
+    }
+    .event-card {
+      flex: 1 1 100%;
+      max-width: 95%;
+    }
+  }
+/* ==================== IMAGE SLIDER ==================== */
+
+.hero-slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--primary-dark, #1a3a6a);
+   
+}
+
+.slider-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.8s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  position: relative;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Captions */
+.caption {
+  position: absolute;
+  bottom: 15%;
+  left: 8%;
+  color: rgb(230, 214, 214);
+  text-shadow: 2px 2px 6px rgba(2, 12, 68, 0.6);
+}
+
+.caption h2 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+  font-family: "Playfair Display", serif;
+  letter-spacing: 0.5px;
+}
+
+.caption .btn {
+  display: inline-block;
+  background-color: var(--accent-color, #D4AF37);
+  color: #1A3A6A;
+  padding: 10px 22px;
+  border-radius: 25px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.caption .btn:hover {
+  background-color: #fff;
+  color: var(--primary-dark, #1A3A6A);
+}
+
+/* Arrows */
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.4);
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.slider-arrow:hover {
+  background-color: var(--accent-color, #D4AF37);
+  color: var(--primary-dark, #1A3A6A);
+}
+
+.slider-arrow.prev { left: 20px; }
+.slider-arrow.next { right: 20px; }
+
+/* Dots */
+.slider-dots {
+  text-align: center;
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+}
+
+.slider-dot {
+  height: 12px;
+  width: 12px;
+  margin: 0 5px;
+  background-color: rgba(255,255,255,0.6);
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.slider-dot.active {
+  background-color: var(--accent-color, #D4AF37);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .caption h2 {
+    font-size: 1.4rem;
+  }
+  .caption {
+    bottom: 12%;
+    left: 6%;
+  }
+  .caption .btn {
+    padding: 8px 18px;
+    font-size: 0.9rem;
+  }
+}
+
+
+    </style>
+    
+    <!-- Playfair Display font -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ====================  NAVBAR ==================== -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <div class="navbar-logo-text">Deccan Club <span>Ireland</span></div>
+            </div>
+            
+            <ul class="navbar-menu" id="navbarMenu">
+                <li class="navbar-item"><a href="#home" class="navbar-link"><i class="fas fa-home"></i> Home</a></li>
+                
+                <li class="navbar-item dropdown">
+                    <a href="#about" class="navbar-link"><i class="fas fa-info-circle"></i> About <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item"><a href="#about" class="dropdown-link"><i class="fas fa-bullseye"></i> Mission & Vision</a></li>
+                        <li class="dropdown-item"><a href="#about" class="dropdown-link"><i class="fas fa-sitemap"></i> Organizational Overview</a></li>
+                        <li class="dropdown-item"><a href="#about" class="dropdown-link"><i class="fas fa-users"></i> Leadership Team</a></li>
+                    </ul>
+                </li>
+                
+                <li class="navbar-item"><a href="#events" class="navbar-link"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                
+                <li class="navbar-item dropdown">
+                    <a href="Education.html" class="navbar-link"><i class="fas fa-graduation-cap"></i> Education <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item"><a href="Education.html" class="dropdown-link"><i class="fas fa-school"></i>Primary to Higher education</a></li>
+                       
+                        <li class="dropdown-item"><a href="education1.html" class="dropdown-link"><i class="fas fa-book-open"></i> Free and Paid Learning Resources</a></li>
+                    </ul>
+                </li>
+                
+                <li class="navbar-item"><a href="gallery.html" class="navbar-link"><i class="fas fa-images"></i> Gallery</a></li>
+                
+                <li class="navbar-item"><a href="magazines.html" class="navbar-link"><i class="fas fa-newspaper"></i> Magazines</a></li>
+                
+                <li class="navbar-item dropdown">
+                    <a href="#prayer-timetable" class="navbar-link"><i class="fa-solid fa-mosque"></i> Prayer Timetable <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item"><a href="ayah of the day.html" class="dropdown-link"> Ayah of the Day</a></li>
+                    </ul>
+                </li>
+                
+                <!-- Close Button for Mobile -->
+                <li class="navbar-close" id="navbarClose">
+                    <a href="#" class="navbar-link"><i class="fas fa-times"></i> Close Menu</a>
+                </li>
+            </ul>
+            
+            <div class="navbar-toggle" id="navbarToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
-        <button class="next-btn">&#10095;</button>
+    </nav>
+
+    <!-- ==================== FIXED HEADER STRUCTURE ==================== -->
+    <div class="page-wrapper">
+        <header class="logo-header">
+            <img src="new dci logo (1).png" alt="Deccan Club Ireland Logo">
+        </header>
+        
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Bridging Cultures, Building Futures</h1>
+                    <p>Connecting the Deccan region of India with Ireland through cultural exchange, business collaboration, and community development.</p>
+                    <div class="hero-btns">
+                        <a href="#about" class="btn">Learn More</a>
+                        <a href="#contact" class="btn btn-outline">Join Us @ 086 100 2019</a>
+                    </div>
+                </div>
+             <!-- ==================== IMAGE SLIDER ==================== -->
+<section class="hero-slider">
+  <div class="slider-container">
+    <div class="slides">
+
+      <div class="slide">
+        <img src="https://media.assettype.com/thenewsminute/import/sites/default/files/Osmania_University_(Wikipedia_Commons_CC-SA__N_Subbaiah).JPG?w=1200&h=675&auto=format%2Ccompress&fit=max&enlarge=true" alt="Osmania University,Hyderabad, Telangana, India">
+        <div class="caption">
+          <h2>Osmania University Hyderabad, Telangana, India</h2>
+          </div>
+      </div>
+
+      <div class="slide">
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/14/c8/76/98/one-of-best-stay-anywhere.jpg?w=1200&h=1200&s=1" alt="Taj Falaknuma Palace,Hyderabad, Telangana, India">
+        <div class="caption">
+          <h2>Taj Falaknuma Palace, Hyderabad, Telangana, India</h2>
+         </div>
+      </div>
+
+      <div class="slide">
+        <img src="https://media1.thrillophilia.com/filestore/myx0ziz9cm4ynnru0bhwacb66w86_shutterstock_1911230902.jpg" alt="Charminar,Hyderabad, Telangana, India ">
+        <div class="caption">
+          <h2>Charminar,Hyderabad, Telangana, India</h2>
+          </div>
+      </div>
+
+      <div class="slide">
+        <img src="https://www.hyderabadtourism.travel/images/v2/header-places/golconda-fort-hyderabad-tourism-attraction-entryfee-timings-reviews-header.jpg" alt="Golconda-fort-hyderabad,Telangana, India">
+        <div class="caption">
+          <h2>Golconda Fort Hyderabad,Telangana, India</h2>
+          </div>
+      </div>
+
+      <div class="slide">
+        <img src="https://abirpothi.com/wp-content/uploads/2024/04/Courtesy-Holidify.jpeg" alt="Salar Jung Museum,hyderabad,Telangana, India">
+        <div class="caption">
+          <h2>Salar Jung Museum,Hyderabad,Telangana, India</h2>
+          </div>
+      </div>
+
+      <div class="slide">
+        <img src="https://celtictours.com/wp-content/uploads/2024/10/medium-HA-PENNY-800x534.jpeg" alt="Ha'penny Bridge in Dublin,Ireland">
+        <div class="caption">
+          <h2>Ha'penny Bridge in Dublin,Ireland</h2>
+          </div>
+      </div>
+
+      <div class="slide">
+        <img src="https://www.louisfitzgeraldhotel.com/wp-content/uploads/2025/03/Aviva-Stadium-South-Dublin_Web-Size.jpg" alt="Aviva-Stadium-South-Dublin,Ireland">
+        <div class="caption">
+          <h2>Aviva Stadium Dublin,Ireland</h2>
+           </div>
+      </div>
+
+      <div class="slide">
+        <img src="https://www.irishcentral.com/uploads/article-v2/2022/7/153598/GPO_Dublin_history_via_Getty.jpg?t=1659631692" alt="GPO_Dublin,Ireland">
+        <div class="caption">
+          <h2>GPO Dublin,Ireland</h2>
+          </div>
+      </div>
+
+      <div class="slide">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a3/The_Dubhlinn_Gardens_Dublin_Castle_01.JPG" alt="The_Dubhlinn_Gardens_Dublin_Castle,Ireland">
+        <div class="caption">
+          <h2>The Dubhlinn Gardens Dublin Castle,Ireland</h2>
+           </div>
+      </div>
+
+      <div class="slide">
+        <img src="https://www.go-to-ireland.com/wp-content/uploads/2013/12/liffey.jpg" alt="Liffe River in the Republic of Ireland">
+        <div class="caption">
+          <h2>River Liffey in the Republic of Ireland</h2>
+          <a href="#youth" class="btn">Explore</a>
+        </div>
+      </div>
+
+      <div class="slide">
+        <img src="https://www.prestigecityhyderabad.info/images/prestige/hitech-city.webp" alt="HITEC City financial business district in Hyderabad,Telangana, India">
+        <div class="caption">
+          <h2>HITEC City financial business district in Hyderabad,Telangana, India</h2>
+                  </div>
+      </div>
+
+      <div class="slide">
+        <img src="https://www.shutterstock.com/image-photo/establisher-shot-dublin-skyline-river-600nw-2037895106.jpg" alt="Dublin-skyline-river">
+        <div class="caption">
+          <h2>River Liffey aerial perspective </h2>
+                </div>
+      </div>
+
     </div>
-    
+
+    <div class="slider-arrow prev">&#10094;</div>
+    <div class="slider-arrow next">&#10095;</div>
+
+    <div class="slider-dots"></div>
+  </div>
+</section>
+
+        
+    </section>
+
+    </div>
+
+    <!-- ==================== ABOUT SECTION ==================== -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Us</h2>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-card" id="mission">
+                    <div class="about-card-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Mission</h3>
+                    <p class="about-text">To create a welcoming and supportive community for the Deccan diaspora in Ireland by:</p>
+                    <ul class="about-text">
+                        <li>Promoting social, cultural, and educational development</li>
+                        <li>Encouraging community bonding through events and initiatives</li>
+                        <li>Providing support structures that uplift and engage all age groups</li>
+                    </ul>
+                    <button class="read-more-btn">Read More <i class="fas fa-chevron-down"></i></button>
+                    <div class="additional-content">
+                        <p>Deccan Club Ireland (DCI) was established in November 2005 with the core mission of 
+fostering fraternity, understanding, and sociability among members of the 
+community. Since its inception, DCI has been dedicated to strengthening bonds within 
+the Deccan diaspora while providing informative, cultural, and social support to uplift 
+the wider community.</p>
+                    </div>
+                </div>
+                
+                <div class="about-card" id="overview">
+                    <div class="about-card-icon">
+                        <i class="fas fa-sitemap"></i>
+                    </div>
+                    <h3>Organizational Overview</h3>
+                    <p class="about-text">Founded in 2005, the Deccan Club of Ireland has grown to become a vibrant community organization with over 500 members across Ireland.</p>
+                    <button class="read-more-btn">Read More <i class="fas fa-chevron-down"></i></button>
+                    <div class="additional-content">
+                        <p>We started as a small gathering of friends and have now evolved into a non-profit organization with regular events and programs.</p>
+                        <p>Our executive committee is elected by members, ensuring democratic representation of our community's interests.</p>
+                    </div>
+                </div>
+                
+                <div class="about-card">
+                    <div class="about-card-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Vision</h3>
+                    <p class="about-text">DCI envisions a connected, empowered, and culturally enriched community where:</p>
+                    <ul class="about-text">
+                        <li>Youth are inspired to excel through recognition and leadership opportunities</li>
+                        <li>Culture is celebrated through artistic expression and heritage preservation</li>
+                        <li>Unity thrives through inclusive programs that bridge diverse backgrounds</li>
+                    </ul>
+                    <button class="read-more-btn">Read More <i class="fas fa-chevron-down"></i></button>
+                    <div class="additional-content">
+                        <p>Looking ahead, DCI is focused on:</p>
+                        <ul>
+                            <li>Youth Talent Awards and Academic Recognition</li>
+                            <li>Launching a vibrant Youth Magazine platform</li>
+                            <li>Expanding with interactive workshops and leadership programs</li>
+                            <li>Continuing moral and character-building initiatives</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== EVENTS SECTION ==================== -->
+<section class="section" id="events">
+  <div class="container">
+    <div class="section-title">
+      <h2>Events</h2>
+    </div>
+
+    <div class="events-container three-column-layout">
+      <!-- Donation Appeal -->
+
+      <!-- Youth Magazine -->
+      <div class="event-card">
+        <a href="Youth Magazine 3rd Edition.jpg" class="lightbox">
+          <img
+            src="Youth Magazine 3rd Edition.jpg"
+            alt="DCI Youth Magazine 3rd Edition"
+            class="event-image"
+          />
+        </a>
+        <div class="event-date">
+          Assalamualaikum wa rehmatulahi wa barakatuhu, our community event Sat
+          1st Nov 2025
+        </div>
+        <div class="event-content">
+          <a href="https://formsubmit.co/el/papagi" class="btn">Contact Us</a>
+        </div>
+      </div>
+
+       <div class="event-card">
+        <a href="shuhada appeal.jpg" class="lightbox">
+          <img
+            src="shuhada appeal.jpg"
+            alt="Shaheed Bilal Masjid Donation Appeal - Shuhada Foundation"
+            class="event-image"
+          />
+        </a>
+        <div class="event-date">Community Support</div>
+        <div class="event-content">
+          <h3>Shuhada Foundation of Ireland</h3>
+          <p>
+            This winter, Deccan Club of Ireland proudly supports the
+            <strong>Shaheed Bilal Masjid Donation Appeal</strong>. Together, we
+            can help build a masjid and community centre for future generations.
+          </p>
+          <a
+            href="https://dev-shuhadafoundation.weebly.com/"
+            target="_blank"
+            class="btn"
+            >Learn More & Donate</a
+          >
+        </div>
+      </div>
+
+      <!-- Sponsors -->
+      <div class="event-card">
+        <a href="sponers winter event.jpg" class="lightbox">
+          <img
+            src="sponers winter event.jpg"
+            alt="Deccan Club Ireland Winter Event Sponsors"
+            class="event-image"
+          />
+        </a>
+        <div class="event-date">Winter Event 2025</div>
+        <div class="event-content">
+          <h3>Thank You to All Our Sponsors</h3>
+          <p>
+            We extend our heartfelt gratitude to all our sponsors for supporting
+            the Deccan Club of Ireland Winter Event 2025. Your generosity helps
+            strengthen our community spirit.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox Modal -->
+<div id="lightbox-overlay">
+  <img id="lightbox-image" src="" alt="Expanded view" />
+</div>
+
+<script>
+  // Simple Vanilla JS Lightbox
+  const lightboxLinks = document.querySelectorAll(".lightbox");
+  const overlay = document.getElementById("lightbox-overlay");
+  const lightboxImage = document.getElementById("lightbox-image");
+
+  lightboxLinks.forEach(link => {
+    link.addEventListener("click", e => {
+      e.preventDefault();
+      const imgSrc = link.getAttribute("href");
+      lightboxImage.src = imgSrc;
+      overlay.classList.add("active");
+    });
+  });
+
+  overlay.addEventListener("click", () => {
+    overlay.classList.remove("active");
+  });
+</script>
+
+ <!-- ==================== PRAYER TIMETABLE ==================== -->
+    <section class="section" id="prayer-timetable">
+        <div class="container">
+            <div class="section-title">
+                <h2>Prayer Timetable</h2>
+            </div>
+            <div class="prayer-container">
+                <div class="location">Location: Dublin, Ireland</div>
+                <div class="date" id="todayDate">Loading date...</div>
+                <div id="hijriDate" style="margin-bottom: 20px;"></div>
+                
+                <table class="prayer-table" id="prayerTable">
+                    <tr><th>Prayer</th><th>Adhan Time</th></tr>
+                    <tr><td>Fajr</td><td id="FajrAdhan">-</td></tr>
+                    <tr><td>Dhuhr</td><td id="DhuhrAdhan">-</td></tr>
+                    <tr><td>Asr</td><td id="AsrAdhan">-</td></tr>
+                    <tr><td>Maghrib</td><td id="MaghribAdhan">-</td></tr>
+                    <tr><td>Isha</td><td id="IshaAdhan">-</td></tr>
+                </table>
+                <div class="next-prayer" id="nextPrayer">Loading prayer times...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== AYAH SECTION ==================== -->
+    <section class="ayah-section" id="ayahOfTheDay">
+        <div class="container">
+            <div class="section-title">
+                <h2>Ayah of the Day</h2>
+            </div>
+            <div class="ayah-card">
+                <div class="arabic-text" id="ayahArabic">وَإِن تَصْبِرُوا۟ وَتَتَّقُوا۟ فَإِنَّ ذَٰلِكَ مِنْ عَزْمِ ٱلْأُمُورِ</div>
+                <div class="translation" id="ayahTranslation">"And if you are patient and fear Allah, indeed, that is of the matters requiring resolve."</div>
+                <div class="reference" id="ayahReference">Surah Al-Imran (3:186)</div>
+                <button id="refreshAyah" class="btn">Show Another Ayah</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== QUICK LINKS ==================== -->
+    <div class="container">
+        <div class="sections">
+            <section class="quick-links-section">
+                <h2>Quick Links</h2>
+                <ul>
+                    <li><a href="#mission"><i class="fas fa-bullseye"></i> Mission</a></li>
+                    <li><a href="#events"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                    <li><a href="#gallery"><i class="fas fa-images"></i> Gallery</a></li>
+                    <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                    <li><a href="https://www.rte.ie/" target="_blank"><i class="fas fa-newspaper"></i> RTE News (Ireland)</a></li>
+                    <li><a href="https://www.espncricinfo.com/" target="_blank"><i class="fas fa-cricket"></i> Cricket News (ESPN)</a></li>
+                </ul>
+            </section>
+
+            <section class="quick-links-section">
+                <h2>Irish Immigration</h2>
+                <ul>
+                    <li><a href="https://enterprise.gov.ie/en/what-we-do/workplace-and-skills/employment-permits/permit-types/"><i class="fas fa-briefcase"></i> Work Permits</a></li>
+                    <li><a href="https://www.irishimmigration.ie/how-to-become-a-citizen/become-an-irish-citizen-by-naturalisation/"><i class="fas fa-id-card"></i> Citizenship</a></li>
+                    <li><a href="https://www.irishimmigration.ie/coming-to-join-family-in-ireland/"><i class="fas fa-users"></i> Family Reunification</a></li>
+                    <li><a href="https://www.irishimmigration.ie/coming-to-study-in-ireland/"><i class="fas fa-graduation-cap"></i> Student Visas</a></li>
+                    <li><a href="https://www.irishimmigration.ie/" target="_blank"><i class="fas fa-globe-europe"></i> Official Immigration Website</a></li>
+                    <li><a href="https://www.citizensinformation.ie/en/" target="_blank"><i class="fas fa-users"></i> Citizens Information</a></li>
+                </ul>
+            </section>
+
+                   <section class="quick-links-section">
+            <h2>Resources</h2>
+            <ul>
+                <li><a href="https://www.indianembassydublin.gov.in/" target="_blank"><i class="fas fa-flag"></i> Indian Embassy</a></li>
+                <li><a href="https://www.facebook.com/HyderabadisInIreland/"><i class="fab fa-facebook"></i> Facebook Group</a></li>
+                <li><a href="https://wa.me/353861002019" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                <li><a href="https://www.instagram.com/deccanclubofireland/"><i class="fab fa-instagram"></i> Instagram</a></li>
+                <li><a href="https://formsubmit.co/el/papagi"><i class="fas fa-envelope"></i> Contact us by mail</a></li>
+                <li><a href="https://www.ifixit.com/"><i class="fa-solid fa-car"></i>FixIt</a></li>
+                 <li><a href="https://www.carcarekiosk.com"></i> <i class="fa-solid fa-screwdriver-wrench"></i>Car repairs</a></li>
+                 <li><a href="https://www.newcommunities.ie/about/" target="_blank">NCP(New Communities Partnership)</a></li>
+                    <li><a href="https://www.mrci.ie/" target="_blank">MRCI (Migrant Rights Center Ireland)</a></li>
+            </ul>
+        </section>
+                <section class="quick-links-section">
+                <h2>Deccan Landmarks</h2>
+                <ul>
+                    <li><a href="https://www.incredibleindia.gov.in/en/telangana/hyderabad/falaknuma-palace" target="_blank"><i class="fas fa-landmark"></i> Falaknuma Palace</a></li>
+                    <li><a href="https://www.incredibleindia.gov.in/en/telangana/hyderabad/charminar"><i class="fas fa-monument"></i> Charminar</a></li>
+                    <li><a href="https://www.incredibleindia.gov.in/en/telangana/hyderabad/golconda-fort" target="_blank"><i class="fas fa-fort-awesome"></i> Golconda Fort</a></li>
+                    <li><a href="https://www.incredibleindia.gov.in/en/telangana/hyderabad/salar-jung-museum"><i class="fas fa-museum"></i> Salar Jung Museum</a></li>
+                    <li><a href="https://www.incredibleindia.gov.in/en/telangana/hyderabad/lumbini-park"><i class="fas fa-tree"></i> Lumbini Park</a></li>
+                </ul>
+            </section>
+        </div>
+    </div>
+
+    <!-- ==================== TABBED INTERFACE ==================== -->
+    <div class="tabbed-interface" id="membership">
+        <div class="tab-buttons">
+            <button class="tab-btn active" data-tab="privacy">Privacy Policy</button>
+            <button class="tab-btn" data-tab="terms">Terms & Conditions</button>
+        </div>
+        
+        <div class="tab-content active" id="privacy">
+            <h3>Privacy Policy</h3>
+            <p><strong>Last Updated:</strong> May 2025</p>
+            <p>Deccan Club Ireland (DCI) respects your privacy. We do not collect any personal information through this website without your clear permission. Any information you choose to share with us — such as through contact forms or emails — will be used only for the purpose intended and will not be shared with third parties.</p>
+        </div>
+        
+        <div class="tab-content" id="terms">
+            <h3>Terms & Conditions</h3>
+            <p>These terms govern your use of DCI services and participation in our events.</p>
+            <h4>Membership</h4>
+            <p>Membership is open to individuals who support DCI's mission and agree to these terms.</p>
+        </div>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
     <footer>
-        <p>&copy; 2023 EventPro. All rights reserved.</p>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>About DCI</h3>
+                    <p>The Deccan Club of Ireland bridges cultures between the Deccan region of India and Ireland through cultural exchange, business collaboration, and community development.</p>
+                    <div class="footer-social-links">
+                        <a href="https://www.facebook.com/HyderabadisInIreland/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://x.com/DeccanClub2005" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/deccanclubofireland/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <img src="" alt=""
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#events">Events</a></li>
+                        <li><a href="#prayer-timetable">Prayer Times</a></li>
+                        <li><a href="#immigration">Immigration</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="https://www.indianembassydublin.gov.in/" target="_blank">Indian Embassy</a></li>
+                        <li><a href="https://www.irishimmigration.ie/" target="_blank">Irish Immigration</a></li>
+                        <li><a href="https://www.citizensinformation.ie/" target="_blank">Citizens Information</a></li>
+                        <li><a href="https://www.gov.ie/" target="_blank">Irish Government</a></li>
+                        <li><a href="https://www.rte.ie/news/" target="_blank">RTE News</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <div class="footer-contact-item">
+                        <div class="footer-contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>Blanchardstown D15</div>
+                    </div>
+                    <div class="footer-contact-item">
+                        <div class="footer-contact-icon"><i class="fas fa-phone"></i></div>
+                        <div>086 100 2019</div>
+                    </div>
+                    <div class="footer-contact-item">
+                        <div class="footer-contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div>deccanclubofireland@gmail.com</div>
+                    </div>
+                </div>
+            </div>
+            <footer id="contact">
+    <!-- ... rest of the footer ... -->
+</footer>
+            
+            <div class="footer-bottom">
+                <p>&copy; <script>document.write(new Date().getFullYear())</script> Deccan Club of Ireland. All rights reserved.</p>
+            </div>
+        </div>
+        
+        <div class="back-to-top" id="backToTop">
+            <i class="fas fa-arrow-up"></i>
+        </div>
     </footer>
 
     <script>
+          const timetable = {
+        "July": {
+            "1": ["2:52", "13:31", "17:57", "22:00", "23:30"],
+            "2": ["2:53", "13:31", "17:57", "22:00", "23:30"],
+            "3": ["2:54", "13:31", "17:57", "21:59", "23:29"],
+            "4": ["2:55", "13:31", "17:57", "21:59", "23:29"],
+            "5": ["2:56", "13:31", "17:56", "21:58", "23:28"],
+            "6": ["2:57", "13:31", "17:56", "21:58", "23:28"],
+            "7": ["2:58", "13:32", "17:56", "21:57", "23:27"],
+            "8": ["3:00", "13:32", "17:56", "21:56", "23:26"],
+            "9": ["3:01", "13:32", "17:56", "21:56", "23:26"],
+            "10": ["3:03", "13:32", "17:56", "21:55", "23:26"],
+            "11": ["3:04", "13:32", "17:56", "21:54", "23:26"],
+            "12": ["3:06", "13:32", "17:55", "21:53", "23:25"],
+            "13": ["3:07", "13:32", "17:55", "21:52", "23:25"],
+            "14": ["3:09", "13:32", "17:55", "21:51", "23:25"],
+            "15": ["3:11", "13:33", "17:55", "21:50", "23:25"],
+            "16": ["3:13", "13:33", "17:54", "21:49", "23:25"],
+            "17": ["3:14", "13:33", "17:54", "21:48", "23:24"],
+            "18": ["3:16", "13:33", "17:54", "21:47", "23:24"],
+            "19": ["3:18", "13:33", "17:53", "21:45", "23:24"],
+            "20": ["3:20", "13:33", "17:53", "21:44", "23:24"],
+            "21": ["3:22", "13:33", "17:52", "21:43", "23:23"],
+            "22": ["3:24", "13:33", "17:52", "21:42", "23:23"],
+            "23": ["3:26", "13:33", "17:51", "21:40", "23:23"],
+            "24": ["3:28", "13:33", "17:51", "21:39", "23:23"],
+            "25": ["3:30", "13:33", "17:50", "21:37", "23:23"],
+            "26": ["3:32", "13:33", "17:50", "21:36", "23:22"],
+            "27": ["3:34", "13:33", "17:49", "21:34", "23:20"],
+            "28": ["3:36", "13:33", "17:49", "21:33", "23:18"],
+            "29": ["3:38", "13:33", "17:48", "21:31", "23:16"],
+            "30": ["3:40", "13:33", "17:47", "21:29", "23:14"],
+            "31": ["3:42", "13:33", "17:47", "21:28", "23:12"]
+        },
+        "August": {
+            "1": ["3:44", "13:33", "17:46", "21:26", "23:10"],
+            "2": ["3:46", "13:33", "17:45", "21:24", "23:08"],
+            "3": ["3:49", "13:33", "17:44", "21:22", "23:05"],
+            "4": ["3:51", "13:33", "17:44", "21:21", "23:03"],
+            "5": ["3:53", "13:33", "17:43", "21:19", "23:01"],
+            "6": ["3:55", "13:33", "17:42", "21:17", "22:59"],
+            "7": ["3:57", "13:33", "17:41", "21:15", "22:57"],
+            "8": ["3:59", "13:33", "17:40", "21:13", "22:54"],
+            "9": ["4:01", "13:32", "17:39", "21:11", "22:52"],
+            "10": ["4:04", "13:32", "17:38", "21:09", "22:50"],
+            "11": ["4:06", "13:32", "17:38", "21:07", "22:47"],
+            "12": ["4:08", "13:32", "17:37", "21:05", "22:45"],
+            "13": ["4:10", "13:32", "17:36", "21:03", "22:43"],
+            "14": ["4:12", "13:32", "17:35", "21:01", "22:40"],
+            "15": ["4:14", "13:32", "17:33", "20:59", "22:38"],
+            "16": ["4:16", "13:31", "17:32", "20:57", "22:35"],
+            "17": ["4:19", "13:31", "17:31", "20:55", "22:33"],
+            "18": ["4:21", "13:31", "17:30", "20:53", "22:30"],
+            "19": ["4:23", "13:31", "17:29", "20:51", "22:28"],
+            "20": ["4:25", "13:31", "17:28", "20:48", "22:26"],
+            "21": ["4:27", "13:30", "17:27", "20:46", "22:23"],
+            "22": ["4:29", "13:30", "17:25", "20:44", "22:21"],
+            "23": ["4:31", "13:30", "17:24", "20:42", "22:18"],
+            "24": ["4:33", "13:30", "17:23", "20:40", "22:16"],
+            "25": ["4:35", "13:30", "17:22", "20:37", "22:13"],
+            "26": ["4:37", "13:29", "17:20", "20:35", "22:11"],
+            "27": ["4:39", "13:29", "17:19", "20:33", "22:08"],
+            "28": ["4:41", "13:29", "17:18", "20:31", "22:06"],
+            "29": ["4:43", "13:28", "17:16", "20:28", "22:03"],
+            "30": ["4:45", "13:28", "17:15", "20:26", "22:00"],
+            "31": ["4:47", "13:28", "17:13", "20:24", "21:58"]
+        },
+        "September": {
+            "1": ["4:49", "13:28", "17:12", "20:21", "21:55"],
+            "2": ["4:51", "13:27", "17:11", "20:19", "21:53"],
+            "3": ["4:53", "13:27", "17:09", "20:17", "21:50"],
+            "4": ["4:55", "13:27", "17:08", "20:14", "21:48"],
+            "5": ["4:57", "13:26", "17:06", "20:12", "21:45"],
+            "6": ["4:59", "13:26", "17:05", "20:09", "21:43"],
+            "7": ["5:01", "13:26", "17:03", "20:07", "21:40"],
+            "8": ["5:03", "13:25", "17:02", "20:05", "21:38"],
+            "9": ["5:05", "13:25", "17:00", "20:02", "21:35"],
+            "10": ["5:07", "13:25", "16:58", "20:00", "21:32"],
+            "11": ["5:09", "13:24", "16:57", "19:57", "21:30"],
+            "12": ["5:10", "13:24", "16:55", "19:55", "21:27"],
+            "13": ["5:12", "13:24", "16:53", "19:52", "21:25"],
+            "14": ["5:14", "13:23", "16:52", "19:50", "21:22"],
+            "15": ["5:16", "13:23", "16:50", "19:48", "21:20"],
+            "16": ["5:18", "13:22", "16:48", "19:45", "21:17"],
+            "17": ["5:20", "13:22", "16:47", "19:43", "21:15"],
+            "18": ["5:21", "13:22", "16:45", "19:40", "21:12"],
+            "19": ["5:23", "13:21", "16:43", "19:38", "21:10"],
+            "20": ["5:25", "13:21", "16:42", "19:35", "21:07"],
+            "21": ["5:27", "13:21", "16:40", "19:33", "21:05"],
+            "22": ["5:28", "13:20", "16:38", "19:30", "21:02"],
+            "23": ["5:30", "13:20", "16:36", "19:28", "21:00"],
+            "24": ["5:32", "13:20", "16:35", "19:25", "20:57"],
+            "25": ["5:34", "13:19", "16:33", "19:23", "20:55"],
+            "26": ["5:35", "13:19", "16:31", "19:20", "20:52"],
+            "27": ["5:37", "13:18", "16:29", "19:18", "20:50"],
+            "28": ["5:39", "13:18", "16:27", "19:16", "20:47"],
+            "29": ["5:41", "13:18", "16:26", "19:13", "20:45"],
+            "30": ["5:42", "13:17", "16:24", "19:11", "20:42"]
+        },
+        "October": {
+            "1": ["5:44", "13:17", "16:22", "19:08", "20:40"],
+            "2": ["5:46", "13:17", "16:20", "19:06", "20:38"],
+            "3": ["5:47", "13:16", "16:18", "19:03", "20:35"],
+            "4": ["5:49", "13:16", "16:17", "19:01", "20:33"],
+            "5": ["5:51", "13:16", "16:15", "18:58", "20:31"],
+            "6": ["5:52", "13:15", "16:13", "18:56", "20:28"],
+            "7": ["5:54", "13:15", "16:11", "18:54", "20:26"],
+            "8": ["5:56", "13:15", "16:09", "18:51", "20:24"],
+            "9": ["5:57", "13:14", "16:07", "18:49", "20:21"],
+            "10": ["5:59", "13:14", "16:06", "18:46", "20:19"],
+            "11": ["6:01", "13:14", "16:04", "18:44", "20:17"],
+            "12": ["6:02", "13:13", "16:02", "18:42", "20:15"],
+            "13": ["6:04", "13:13", "16:00", "18:39", "20:12"],
+            "14": ["6:06", "13:13", "15:58", "18:37", "20:10"],
+            "15": ["6:07", "13:13", "15:57", "18:35", "20:08"],
+            "16": ["6:09", "13:12", "15:55", "18:32", "20:06"],
+            "17": ["6:11", "13:12", "15:53", "18:30", "20:04"],
+            "18": ["6:12", "13:12", "15:51", "18:28", "20:02"],
+            "19": ["6:14", "13:12", "15:50", "18:26", "20:00"],
+            "20": ["6:16", "13:12", "15:48", "18:23", "19:58"],
+            "21": ["6:17", "13:11", "15:46", "18:21", "19:56"],
+            "22": ["6:19", "13:11", "15:44", "18:19", "19:54"],
+            "23": ["6:21", "13:11", "15:43", "18:17", "19:52"],
+            "24": ["6:22", "13:11", "15:41", "18:15", "19:50"],
+            "25": ["6:24", "13:11", "15:39", "18:13", "19:48"],
+            "26": ["5:26", "12:11", "14:38", "17:10", "18:46"],
+            "27": ["5:27", "12:11", "14:36", "17:08", "18:44"],
+            "28": ["5:29", "12:10", "14:34", "17:06", "18:42"],
+            "29": ["5:31", "12:10", "14:33", "17:04", "18:40"],
+            "30": ["5:32", "12:10", "14:31", "17:02", "18:39"],
+            "31": ["5:34", "12:10", "14:30", "17:00", "18:37"]
+        },
+        "November": {
+            "1": ["5:35", "12:10", "14:28", "16:58", "18:35"],
+            "2": ["5:37", "12:10", "14:27", "16:56", "18:33"],
+            "3": ["5:39", "12:10", "14:25", "16:54", "18:32"],
+            "4": ["5:40", "12:10", "14:24", "16:52", "18:30"],
+            "5": ["5:42", "12:10", "14:22", "16:51", "18:29"],
+            "6": ["5:44", "12:10", "14:21", "16:49", "18:27"],
+            "7": ["5:45", "12:10", "14:19", "16:47", "18:26"],
+            "8": ["5:47", "12:10", "14:18", "16:45", "18:24"],
+            "9": ["5:48", "12:11", "14:17", "16:43", "18:23"],
+            "10": ["5:50", "12:11", "14:15", "16:42", "18:21"],
+            "11": ["5:52", "12:11", "14:14", "16:40", "18:20"],
+            "12": ["5:53", "12:11", "14:13", "16:38", "18:18"],
+            "13": ["5:55", "12:11", "14:12", "16:37", "18:17"],
+            "14": ["5:56", "12:11", "14:10", "16:35", "18:16"],
+            "15": ["5:58", "12:11", "14:09", "16:34", "18:15"],
+            "16": ["6:00", "12:12", "14:08", "16:32", "18:13"],
+            "17": ["6:01", "12:12", "14:07", "16:31", "18:12"],
+            "18": ["6:03", "12:12", "14:06", "16:29", "18:11"],
+            "19": ["6:04", "12:12", "14:05", "16:28", "18:10"],
+            "20": ["6:06", "12:12", "14:04", "16:27", "18:09"],
+            "21": ["6:07", "12:13", "14:03", "16:25", "18:08"],
+            "22": ["6:09", "12:13", "14:02", "16:24", "18:07"],
+            "23": ["6:10", "12:13", "14:01", "16:23", "18:06"],
+            "24": ["6:12", "12:14", "14:01", "16:22", "18:05"],
+            "25": ["6:13", "12:14", "14:00", "16:21", "18:05"],
+            "26": ["6:14", "12:14", "13:59", "16:20", "18:04"],
+            "27": ["6:16", "12:15", "13:58", "16:19", "18:03"],
+            "28": ["6:17", "12:15", "13:58", "16:18", "18:02"],
+            "29": ["6:19", "12:15", "13:57", "16:17", "18:02"],
+            "30": ["6:20", "12:16", "13:56", "16:16", "18:01"]
+        },
+        "December": {
+            "1": ["6:21", "12:16", "13:56", "16:15", "18:01"],
+            "2": ["6:22", "12:16", "13:55", "16:15", "18:00"],
+            "3": ["6:24", "12:17", "13:55", "16:14", "18:00"],
+            "4": ["6:25", "12:17", "13:55", "16:13", "17:59"],
+            "5": ["6:26", "12:18", "13:54", "16:13", "17:59"],
+            "6": ["6:27", "12:18", "13:54", "16:12", "17:59"],
+            "7": ["6:28", "12:18", "13:54", "16:12", "17:58"],
+            "8": ["6:29", "12:19", "13:54", "16:11", "17:58"],
+            "9": ["6:30", "12:19", "13:53", "16:11", "17:58"],
+            "10": ["6:31", "12:20", "13:53", "16:11", "17:58"],
+            "11": ["6:32", "12:20", "13:53", "16:10", "17:58"],
+            "12": ["6:33", "12:21", "13:53", "16:10", "17:58"],
+            "13": ["6:34", "12:21", "13:53", "16:10", "17:58"],
+            "14": ["6:35", "12:22", "13:53", "16:10", "17:58"],
+            "15": ["6:36", "12:22", "13:53", "16:10", "17:58"],
+            "16": ["6:37", "12:23", "13:54", "16:10", "17:58"],
+            "17": ["6:38", "12:23", "13:54", "16:10", "17:58"],
+            "18": ["6:38", "12:24", "13:54", "16:10", "17:58"],
+            "19": ["6:39", "12:24", "13:54", "16:11", "17:59"],
+            "20": ["6:40", "12:25", "13:55", "16:11", "17:59"],
+            "21": ["6:40", "12:25", "13:55", "16:11", "18:00"],
+            "22": ["6:41", "12:26", "13:56", "16:12", "18:00"],
+            "23": ["6:41", "12:26", "13:56", "16:12", "18:00"],
+            "24": ["6:42", "12:27", "13:57", "16:13", "18:01"],
+            "25": ["6:42", "12:27", "13:57", "16:13", "18:02"],
+            "26": ["6:42", "12:28", "13:58", "16:14", "18:02"],
+            "27": ["6:43", "12:28", "13:58", "16:15", "18:03"],
+            "28": ["6:43", "12:29", "13:59", "16:16", "18:04"],
+            "29": ["6:43", "12:29", "14:00", "16:16", "18:04"],
+            "30": ["6:43", "12:30", "14:01", "16:17", "18:05"],
+            "31": ["6:43", "12:30", "14:01", "16:18", "18:06"]
+        }
+    };
+
+    function updateTimetable() {
+        const now = new Date();
+        const day = now.getDate();
+        const month = now.getMonth(); // 0-11
+        const year = now.getFullYear();
+        
+        const monthNames = ["January", "February", "March", "April", "May", "June", 
+                          "July", "August", "September", "October", "November", "December"];
+        const currentMonth = monthNames[month];
+        
+        document.getElementById("todayDate").textContent = now.toDateString();
+
+        // Check if we have data for this month and day
+        if (!timetable[currentMonth] || !timetable[currentMonth][day]) {
+            document.getElementById("nextPrayer").textContent = "Timetable not available for this date.";
+            return;
+        }
+
+        const [fajr, dhuhr, asr, maghrib, isha] = timetable[currentMonth][day];
+
+        // Update adhan times
+        document.getElementById("FajrAdhan").textContent = fajr;
+        document.getElementById("DhuhrAdhan").textContent = dhuhr;
+        document.getElementById("AsrAdhan").textContent = asr;
+        document.getElementById("MaghribAdhan").textContent = maghrib;
+        document.getElementById("IshaAdhan").textContent = isha;
+
+        updateNextPrayer(fajr, dhuhr, asr, maghrib, isha);
+    }
+
+    function updateNextPrayer(fajr, dhuhr, asr, maghrib, isha) {
+        const now = new Date();
+        const prayers = [
+            { name: "Fajr", time: fajr },
+            { name: "Dhuhr", time: dhuhr },
+            { name: "Asr", time: asr },
+            { name: "Maghrib", time: maghrib },
+            { name: "Isha", time: isha }
+        ];
+
+        // Find the next prayer
+        for (const prayer of prayers) {
+            const [h, m] = prayer.time.split(":").map(Number);
+            const prayerTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), h, m);
+            
+            if (now < prayerTime) {
+                updateCountdown(prayerTime, prayer.name);
+                return;
+            }
+        }
+
+        // If all prayers have passed for today, next is Fajr tomorrow
+        const tomorrow = new Date(now);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        const [h, m] = fajr.split(":").map(Number);
+        const fajrTomorrow = new Date(tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate(), h, m);
+        
+        updateCountdown(fajrTomorrow, "Fajr (tomorrow)");
+    }
+
+    function updateCountdown(targetTime, prayerName) {
+        function update() {
+            const now = new Date();
+            const diff = Math.floor((targetTime - now) / 1000);
+            
+            if (diff <= 0) {
+                clearInterval(interval);
+                updateTimetable(); // Refresh the timetable
+                return;
+            }
+
+            const hours = Math.floor(diff / 3600);
+            const minutes = Math.floor((diff % 3600) / 60);
+            const seconds = diff % 60;
+            const pad = n => n.toString().padStart(2, '0');
+            
+            document.getElementById("nextPrayer").textContent = 
+                `Next prayer: ${prayerName} in ${pad(hours)}h ${pad(minutes)}m ${pad(seconds)}s`;
+        }
+
+        update(); // Initial call
+        const interval = setInterval(update, 1000); // Update every second
+    }
+
+    function updateHijriDate() {
+        try {
+            const today = new Date();
+            const hijriDate = new Intl.DateTimeFormat('en-TN-u-ca-islamic', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            }).format(today);
+
+            document.getElementById("hijriDate").textContent = `Hijri Date: ${hijriDate}`;
+        } catch (error) {
+            // Fallback: use a simple calculation or display a static message
+            document.getElementById("hijriDate").textContent = "Hijri date not available";
+        }
+    }
+
+    // Initialize
+    updateTimetable();
+    updateHijriDate();
+    // Update the timetable every minute to catch prayer time changes
+    setInterval(updateTimetable, 60000);
+
+        // Enhanced Mobile menu functionality
         document.addEventListener('DOMContentLoaded', function() {
-            // Lightbox functionality
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.querySelector('.lightbox-img');
-            const lightboxCaption = document.querySelector('.lightbox-caption');
-            const closeBtn = document.querySelector('.close-btn');
-            const prevBtn = document.querySelector('.prev-btn');
-            const nextBtn = document.querySelector('.next-btn');
+            const navbarToggle = document.getElementById('navbarToggle');
+            const navbarClose = document.getElementById('navbarClose');
+            const navbarMenu = document.getElementById('navbarMenu');
+            const dropdowns = document.querySelectorAll('.dropdown');
             
-            // Get all gallery images
-            const galleryImages = document.querySelectorAll('.gallery-item img');
-            let currentImageIndex = 0;
+            // Toggle mobile menu
+            function toggleMenu() {
+                navbarToggle.classList.toggle('active');
+                navbarMenu.classList.toggle('active');
+            }
             
-            // Open lightbox when image is clicked
-            galleryImages.forEach((img, index) => {
-                img.addEventListener('click', () => {
-                    currentImageIndex = index;
-                    updateLightbox();
-                    lightbox.classList.add('active');
-                    document.body.style.overflow = 'hidden'; // Prevent scrolling
+            // Close mobile menu
+            function closeMenu() {
+                navbarToggle.classList.remove('active');
+                navbarMenu.classList.remove('active');
+                
+                // Close all dropdowns
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+            
+            // Toggle menu on hamburger click
+            navbarToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                toggleMenu();
+            });
+            
+            // Close menu on close button click
+            navbarClose.addEventListener('click', function(e) {
+                e.stopPropagation();
+                closeMenu();
+            });
+            
+            // Handle dropdowns on mobile
+            function handleDropdowns() {
+                if (window.innerWidth <= 968) {
+                    dropdowns.forEach(dropdown => {
+                        const link = dropdown.querySelector('.navbar-link');
+                        
+                        link.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            dropdown.classList.toggle('active');
+                        });
+                    });
+                }
+            }
+            
+            // Initialize dropdown handling
+            handleDropdowns();
+            
+            // Close mobile menu when clicking on a link (navigation)
+            const navLinks = document.querySelectorAll('.navbar-link:not(.dropdown .navbar-link)');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 968) {
+                        closeMenu();
+                    }
                 });
             });
             
-            // Update lightbox with current image
-            function updateLightbox() {
-                const currentImage = galleryImages[currentImageIndex];
-                lightboxImg.src = currentImage.src;
-                lightboxCaption.textContent = currentImage.dataset.caption || currentImage.alt;
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    if (this.getAttribute('href') !== '#') {
+                        e.preventDefault();
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                            
+                            // Close mobile menu after clicking a link
+                            if (window.innerWidth <= 968) {
+                                closeMenu();
+                            }
+                        }
+                    }
+                });
+            });
+
+            // Tab functionality
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked button and corresponding content
+                    button.classList.add('active');
+                    const tabId = button.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+
+            // Read More Button Functionality
+            const readMoreBtns = document.querySelectorAll('.read-more-btn');
+            
+            readMoreBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const additionalContent = this.nextElementSibling;
+                    const isExpanded = additionalContent.style.display === 'block';
+                    
+                    // Toggle content visibility
+                    additionalContent.style.display = isExpanded ? 'none' : 'block';
+                    
+                    // Update button text and icon
+                    this.innerHTML = isExpanded ? 
+                        'Read More <i class="fas fa-chevron-down"></i>' : 
+                        'Read Less <i class="fas fa-chevron-up"></i>';
+                });
+            });
+
+            // Ayah of the Day Functionality
+            const ayahs = [
+                {
+                    arabic: "وَإِن تَصْبِرُوا۟ وَتَتَّقُوا۟ فَإِنَّ ذَٰلِكَ مِنْ عَزْمِ ٱلْأُمُورِ",
+                    translation: "And if you are patient and fear Allah, indeed, that is of the matters requiring resolve.",
+                    reference: "Surah Al-Imran (3:186)"
+                },
+                {
+                    arabic: "إِنَّ مَعَ ٱلْعُسْرِ يُسْرًا",
+                    translation: "Indeed, with hardship comes ease.",
+                    reference: "Surah Ash-Sharh (94:6)"
+                },
+                {
+                    arabic: "وَٱذْكُرُوا۟ نِعْمَةَ ٱللَّهِ عَلَيْكُمْ",
+                    translation: "And remember the favor of Allah upon you.",
+                    reference: "Surah Al-Baqarah (2:231)"
+                }
+            ];
+
+            // Display ayah
+            function displayAyah(ayah) {
+                document.getElementById('ayahArabic').textContent = ayah.arabic;
+                document.getElementById('ayahTranslation').textContent = `"${ayah.translation}"`;
+                document.getElementById('ayahReference').textContent = ayah.reference;
             }
+
+            // Initial display
+            displayAyah(ayahs[0]);
+
+            // Refresh button - shows random ayah
+            document.getElementById('refreshAyah').addEventListener('click', function() {
+                const randomAyah = ayahs[Math.floor(Math.random() * ayahs.length)];
+                displayAyah(randomAyah);
+            });
+
+            // Back to top functionality
+            const backToTop = document.getElementById('backToTop');
             
-            // Close lightbox
-            function closeLightbox() {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = ''; // Re-enable scrolling
-            }
-            
-            // Navigation functions
-            function showPrevImage() {
-                currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
-                updateLightbox();
-            }
-            
-            function showNextImage() {
-                currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
-                updateLightbox();
-            }
-            
-            // Event listeners
-            closeBtn.addEventListener('click', closeLightbox);
-            prevBtn.addEventListener('click', showPrevImage);
-            nextBtn.addEventListener('click', showNextImage);
-            
-            // Close when clicking outside image
-            lightbox.addEventListener('click', (e) => {
-                if (e.target === lightbox) {
-                    closeLightbox();
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
                 }
             });
-            
-            // Keyboard navigation
-            document.addEventListener('keydown', (e) => {
-                if (!lightbox.classList.contains('active')) return;
-                
-                switch(e.key) {
-                    case 'Escape':
-                        closeLightbox();
-                        break;
-                    case 'ArrowLeft':
-                        showPrevImage();
-                        break;
-                    case 'ArrowRight':
-                        showNextImage();
-                        break;
-                }
+
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             });
         });
+        // Image Slider Functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const slidesContainer = document.querySelector('.slides-container');
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        const dots = document.querySelectorAll('.slider-dot');
+        
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+        
+        // Function to update slider position
+        function updateSlider() {
+            slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update active dot
+            dots.forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+        
+        // Next slide function
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        }
+        
+        // Previous slide function
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        }
+        
+        // Event listeners for navigation buttons
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+        
+        // Event listeners for dots
+        dots.forEach(dot => {
+            dot.addEventListener('click', function() {
+                currentSlide = parseInt(this.getAttribute('data-index'));
+                updateSlider();
+            });
+        });
+        
+        // Auto slide functionality
+        let slideInterval = setInterval(nextSlide, 5000);
+        
+        // Pause auto slide on hover
+        const slider = document.querySelector('.image-slider');
+        slider.addEventListener('mouseenter', () => {
+            clearInterval(slideInterval);
+        });
+        
+        slider.addEventListener('mouseleave', () => {
+            slideInterval = setInterval(nextSlide, 5000);
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                prevSlide();
+            } else if (e.key === 'ArrowRight') {
+                nextSlide();
+            }
+        });
+    });
+   
+  const slidesContainer = document.querySelector('.slides');
+  const slides = document.querySelectorAll('.slide');
+  const prevBtn = document.querySelector('.slider-arrow.prev');
+  const nextBtn = document.querySelector('.slider-arrow.next');
+  const dotsContainer = document.querySelector('.slider-dots');
+
+  let index = 0;
+
+  // Create dots
+  slides.forEach((_, i) => {
+    const dot = document.createElement('span');
+    dot.classList.add('slider-dot');
+    if (i === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => {
+      index = i;
+      updateSlider();
+    });
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = document.querySelectorAll('.slider-dot');
+
+  function updateSlider() {
+    if (index >= slides.length) index = 0;
+    if (index < 0) index = slides.length - 1;
+    slidesContainer.style.transform = `translateX(${-index * 100}%)`;
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[index].classList.add('active');
+  }
+
+  prevBtn.addEventListener('click', () => {
+    index--;
+    updateSlider();
+  });
+
+  nextBtn.addEventListener('click', () => {
+    index++;
+    updateSlider();
+  });
+
+  // Auto-slide
+  setInterval(() => {
+    index++;
+    updateSlider();
+  }, 5000);
+
     </script>
 </body>
 </html>
