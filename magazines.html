@@ -3,72 +3,251 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magazine Display</title>
+    <title>Magazine Display - Deccan Club of Ireland</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
+        /* ==================== GLOBAL STYLES ==================== */
+        :root {
+            --primary-color: #2A5885;
+            --primary-light: #547AA5;
+            --primary-dark: #1A3A6A;
+            --accent-color: #D4AF37;
+            --accent-dark: #B38F2A;
+            --accent-light: #FFD95E;
+            --light-color: #F8F9FA;
+            --dark-color: #212529;
+            --gray-mid: #6C757D;
+            --overlay-color: rgba(42, 88, 133, 0.85);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
-        
+
         body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            background: #f8f9fa;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
-        /* Header Styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* ==================== HEADER STYLES ==================== */
         header {
-            background: #2A5885;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
             color: white;
-            padding: 1rem;
+            padding: 1rem 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
         }
 
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            width: 100%;
+            padding: 0 1rem;
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: white;
-            text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 1rem;
+        }
+
+        .logo-img {
+            height: 60px;
+            width: auto;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .header-title span {
+            font-size: 1.2rem;
+            font-weight: 400;
+            display: block;
+        }
+
+        .header-tagline {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 0.2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            z-index: 1;
+            top: 100%;
+            left: 0;
+        }
+
+        .dropdown-content a {
+            color: var(--dark-color);
+            padding: 0.8rem 1rem;
+            display: block;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dropdown-content a:hover {
+            background-color: rgba(42, 88, 133, 0.1);
+            color: var(--primary-color);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: white;
+            padding: 10px;
+        }
+
+        /* ==================== HERO STYLES ==================== */
+        .hero {
+            padding: 2rem 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==') repeat;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Back Button Styles */
+        .back-btn-container {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
         }
 
         .back-btn {
-            background: rgba(255,255,255,0.1);
-            color: white;
-            border: none;
-            border-radius: 0.5rem;
-            padding: 0.5rem 1rem;
-            font-weight: 600;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--accent-color);
+            color: var(--dark-color);
             text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .back-btn:hover {
-            background: rgba(255,255,255,0.2);
+            background-color: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
-        
+
+        .back-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        .back-btn:hover i {
+            transform: translateX(-3px);
+        }
+
+        /* ==================== MAGAZINE STYLES ==================== */
         .magazine-container {
             width: 100%;
             max-width: 1400px;
@@ -85,45 +264,6 @@
             justify-content: center;
             gap: 2rem;
             padding: 1rem 0;
-        }
-        
-        /* Footer Styles */
-        footer {
-            background: #2A5885;
-            color: white;
-            padding: 1.5rem 1rem;
-            text-align: center;
-            margin-top: auto;
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            transition: opacity 0.2s;
-        }
-
-        .footer-links a:hover {
-            opacity: 0.8;
-        }
-
-        .copyright {
-            font-size: 0.9rem;
-            opacity: 0.8;
         }
         
         /* Magazine Item Styles */
@@ -161,7 +301,7 @@
         .magazine-title {
             margin-bottom: 0.5rem;
             font-size: 1.25rem;
-            color: #2A5885;
+            color: var(--primary-color);
             font-weight: 700;
             white-space: nowrap;
             overflow: hidden;
@@ -171,7 +311,7 @@
         
         .magazine-date {
             font-size: 1rem;
-            color: #6C757D;
+            color: var(--gray-mid);
             margin-bottom: 1.25rem;
             font-weight: 500;
         }
@@ -201,13 +341,13 @@
         }
         
         .preview-btn {
-            background: #2A5885;
+            background: var(--primary-color);
             color: white;
         }
         
         .pdf-btn {
-            background: #D4AF37;
-            color: #212529;
+            background: var(--accent-color);
+            color: var(--dark-color);
         }
         
         .rules-btn {
@@ -216,13 +356,13 @@
         }
         
         .preview-btn:hover {
-            background: #1A3A6A;
+            background: var(--primary-dark);
             transform: translateY(-2px);
             box-shadow: 0 0.5rem 0.75rem rgba(0,0,0,0.15);
         }
         
         .pdf-btn:hover {
-            background: #B38F2A;
+            background: var(--accent-dark);
             transform: translateY(-2px);
             box-shadow: 0 0.5rem 0.75rem rgba(0,0,0,0.15);
         }
@@ -273,7 +413,7 @@
         
         .modal-header {
             padding: 1rem;
-            background: #2A5885;
+            background: var(--primary-color);
             color: white;
             display: flex;
             justify-content: space-between;
@@ -345,6 +485,46 @@
             z-index: 10;
         }
         
+        /* ==================== FOOTER STYLES ==================== */
+        footer {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* ==================== RESPONSIVE STYLES ==================== */
         @media (max-width: 768px) {
             .header-container, .footer-content {
                 padding: 0 1rem;
@@ -377,20 +557,70 @@
                 flex-direction: column;
                 gap: 0.5rem;
             }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                display: none;
+                width: 100%;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0.3rem 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .dropdown-content {
+                position: static;
+                width: 100%;
+                box-shadow: none;
+            }
+            
+            .header-title {
+                font-size: 1.5rem;
+            }
+            
+            .header-title span {
+                font-size: 1rem;
+            }
+            
+            .header-tagline {
+                font-size: 0.8rem;
+            }
+            
+            .logo-img {
+                height: 50px;
+            }
+            
+            .hero {
+                padding: 1.5rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
         }
         
         @media (max-width: 480px) {
             header {
-                padding: 0.75rem;
+                padding: 0.75rem 0;
             }
             
             .logo {
                 font-size: 1.2rem;
-            }
-            
-            .back-btn {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.9rem;
             }
             
             .magazine-line {
@@ -442,17 +672,54 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header Section -->
     <header>
         <div class="header-container">
-            <a href="index.html" class="logo">
-                <i class="fas fa-book-open"></i> DCI Magazines
-            </a>
-            <a href="index.html" class="back-btn">
-                <i class="fas fa-arrow-left"></i> Back
-            </a>
-        </div>
+            <div class="logo">
+                <div class="logo-img">
+                    <div style="width: 60px; height: 60px; background-color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <span style="color: var(--primary-color); font-weight: bold;">DCI</span>
+                    </div>
+                </div>
+                <div class="logo-text">
+                    <h1 class="header-title">Deccan Club <span>of Ireland</span></h1>
+                    <p class="header-tagline">Bridging Cultures, Building Community</p>
+                </div>
+            </div>
+            
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#events">Events</a></li>
+        <li class="dropdown">
+            <a href="#">Resources <i class="fas fa-chevron-down"></i></a>
+            <div class="dropdown-content">
+                <a href="Education.html">Education</a>
+                <a href="index.html#immigration">Immigration</a>
+            </div>
+        </li>
+        <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+</nav>
     </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>DCI Youth Magazines</h1>
+            <p>Explore our collection of youth magazines featuring insightful articles, creative works, and community highlights</p>
+            <div class="back-btn-container">
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </section>
 
     <!-- Main Content -->
     <div class="magazine-container">
@@ -472,8 +739,7 @@
                 </div>
             </div>
 
-
-            <!-- Magazine 3 -->
+            <!-- Magazine 2 -->
             <div class="magazine-item">
                 <img src="DCI 1 cover.png" class="magazine-cover" alt="DCI Youth Magazine - 1st Edition 2024" data-pdf="DCIYouthMagazineJan2024Final.pdf" data-title="DCI Youth Magazine - 1st Edition 2024">
                 <div class="magazine-title">DCI Youth Magazine</div>
@@ -488,16 +754,17 @@
                 </div>
             </div>
 
-             <div class="magazine-item">
-                <img src="dci youth 3.jpg" class="magazine-cover" alt="DCI Youth Magazine - 3rd Edition 2025" data-pdf="dci youth 3.jpg" data-title="DCI Youth Magazine - 3rd Edition 2025">
+            <!-- Magazine 3 -->
+            <div class="magazine-item">
+                <img src="1.png" class="magazine-cover" alt="DCI Youth Magazine - 3rd Edition 2025" data-pdf="1.png" data-title="DCI Youth Magazine - 3rd Edition 2025">
                 <div class="magazine-title">DCI Youth Magazine</div>
                 <div class="magazine-date">3rd Edition 2025</div>
                 <div class="action-buttons">
-                    <button class="preview-btn" data-pdf="dci youth 3.jpg" data-title="DCI Youth Magazine - 3rd Edition 2025">
+                    <button class="preview-btn" data-pdf="DCI Youth Magazine 3rd edition.pdf" data-title="DCI Youth Magazine - 3rd Edition 2025">
                         <i class="fas fa-eye"></i> Preview
                     </button>
-                    <a href="DCI Youth Magazine - InformationPDF.pdf" class="rules-btn">
-                        <i class="fas fa-book"></i> Rules
+                    <a href="DCI Youth Magazine 3rd edition.pdf" class="pdf-btn" download>
+                        <i class="fas fa-download"></i> Download
                     </a>
                 </div>
             </div>
@@ -506,13 +773,12 @@
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="about.html">About Us</a>
-                <a href="contact.html">Contact</a>
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
-            </div>
+      <div class="footer-links">
+    <a href="index.html#about">About Us</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="index.html#privacy">Privacy Policy</a>
+    <a href="index.html#terms">Terms & Conditions</a>
+</div>
             <div class="copyright">
                 &copy; 2024 DCI Youth Magazines. All rights reserved.
             </div>
@@ -530,20 +796,20 @@
                 <div class="pdf-viewer-container">
                     <iframe id="pdfViewer" class="pdf-viewer" frameborder="0"></iframe>
                     <div class="pdf-alternative" id="pdfAlternative">
-                        <i class="fas fa-file-pdf fa-4x" style="color: #D4AF37;"></i>
+                        <i class="fas fa-file-pdf fa-4x" style="color: var(--accent-color);"></i>
                         <h3>PDF Preview Not Available</h3>
-                        <p>Please download the magazine to view it on your device.</p>
+                        <p>Please click the button below.</p>
                         <a href="#" class="pdf-btn" id="altDownloadBtn">
-                            <i class="fas fa-download"></i> Download
+                            <i class="fas fa-eye"></i>Click here to Preview
                         </a>
+                          <div class="modal-footer">
+                <button class="pdf-btn" id="modalDownloadBtn">
+                    <i class="fas fa-download"></i> Download Magazine
+                </button>
+            </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <a href="#" class="pdf-btn" id="modalDownloadBtn">
-                    <i class="fas fa-download"></i> Download
-                </a>
-            </div>
+            
         </div>
     </div>
 
@@ -564,8 +830,17 @@
             const previewBtns = document.querySelectorAll('.preview-btn');
             const coverImages = document.querySelectorAll('.magazine-cover');
             
+            // Mobile menu toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navMenu = document.querySelector('nav ul');
+            
             // Check if mobile device
             const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            // Mobile menu toggle
+            menuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('show');
+            });
             
             // Open modal function
             function openModal(pdfFile, title) {
@@ -637,3 +912,8 @@
     </script>
 </body>
 </html>
+
+
+
+
+
