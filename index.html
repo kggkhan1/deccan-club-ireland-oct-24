@@ -2088,6 +2088,118 @@ const dublinPrayerTimetable2026 = {
     }
 };
 
+// Rest of the functions remain the same as before
+function updateTimetable() {
+    const now = new Date();
+    const day = now.getDate();
+    const month = now.getMonth();
+    const year = now.getFullYear();
+    
+    const monthNames = ["January", "February", "March", "April", "May", "June", 
+                      "July", "August", "September", "October", "November", "December"];
+    const currentMonth = monthNames[month];
+    
+    // Format date display
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById("todayDate").textContent = now.toLocaleDateString('en-IE', options);
+
+    // Check if we have data for this month and day (for 2026)
+    if (year !== 2026) {
+        document.getElementById("nextPrayer").textContent = "Prayer timetable available for 2026 only.";
+        return;
+    }
+    
+    if (!dublinPrayerTimetable2026[currentMonth] || !dublinPrayerTimetable2026[currentMonth][day]) {
+        document.getElementById("nextPrayer").textContent = "Prayer timetable not available for this date.";
+        return;
+    }
+
+    const [fajr, dhuhr, asr, maghrib, isha] = dublinPrayerTimetable2026[currentMonth][day];
+
+    // Update adhan times
+    document.getElementById("FajrAdhan").textContent = fajr;
+    document.getElementById("DhuhrAdhan").textContent = dhuhr;
+    document.getElementById("AsrAdhan").textContent = asr;
+    document.getElementById("MaghribAdhan").textContent = maghrib;
+    document.getElementById("IshaAdhan").textContent = isha;
+
+    updateNextPrayer(fajr, dhuhr, asr, maghrib, isha);
+}
+
+function updateNextPrayer(fajr, dhuhr, asr, maghrib, isha) {
+    const now = new Date();
+    const prayers = [
+        { name: "Fajr", time: fajr },
+        { name: "Dhuhr", time: dhuhr },
+        { name: "Asr", time: asr },
+        { name: "Maghrib", time: maghrib },
+        { name: "Isha", time: isha }
+    ];
+
+    // Find the next prayer
+    for (const prayer of prayers) {
+        const [h, m] = prayer.time.split(":").map(Number);
+        const prayerTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), h, m);
+        
+        if (now < prayerTime) {
+            updateCountdown(prayerTime, prayer.name);
+            return;
+        }
+    }
+
+    // If all prayers have passed for today, next is Fajr tomorrow
+    const tomorrow = new Date(now);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const [h, m] = fajr.split(":").map(Number);
+    const fajrTomorrow = new Date(tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate(), h, m);
+    
+    updateCountdown(fajrTomorrow, "Fajr (tomorrow)");
+}
+
+function updateCountdown(targetTime, prayerName) {
+    function update() {
+        const now = new Date();
+        const diff = Math.floor((targetTime - now) / 1000);
+        
+        if (diff <= 0) {
+            clearInterval(interval);
+            updateTimetable(); // Refresh the timetable
+            return;
+        }
+
+        const hours = Math.floor(diff / 3600);
+        const minutes = Math.floor((diff % 3600) / 60);
+        const seconds = diff % 60;
+        const pad = n => n.toString().padStart(2, '0');
+        
+        document.getElementById("nextPrayer").textContent = 
+            `Next prayer: ${prayerName} in ${pad(hours)}h ${pad(minutes)}m ${pad(seconds)}s`;
+    }
+
+    update(); // Initial call
+    const interval = setInterval(update, 1000); // Update every second
+}
+
+function updateHijriDate() {
+    const today = new Date();
+    
+    // Calculate Hijri date (approximate conversion)
+    // Note: This is a simplified calculation. For accurate dates, use a proper library
+    const gregorianYear = today.getFullYear();
+    const hijriYear = Math.floor((gregorianYear - 622) * (33/32));
+    const hijriDate = `${hijriYear} AH`;
+    
+    document.getElementById("hijriDate").innerHTML = 
+        `<i class="fas fa-moon"></i> Hijri Date: ${hijriDate}`;
+}
+
+// Initialize prayer timetable
+updateTimetable();
+updateHijriDate();
+
+// Update the timetable every minute to catch prayer time changes
+setInterval(updateTimetable, 60000);
+
 
     function updateTimetable() {
         const now = new Date();
@@ -2488,5 +2600,6 @@ const dublinPrayerTimetable2026 = {
     </script>
 </body>
 </html>
+
 
 
